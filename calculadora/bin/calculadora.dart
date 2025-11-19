@@ -1,5 +1,7 @@
 import 'dart:io';
 
+List<String> operacoesValidas = <String>["+", "-", "*", "/"];
+
 double soma(double a, double b) {
   return a + b;
 }
@@ -47,22 +49,21 @@ double leNumero() {
 }
 
 String leOperacao() {
-  String? entrada = stdin.readLineSync();
-
-  if (entrada != null) {
-    if (entrada != "") {
-      return entrada;
-    }
+  print("Digite a operação desejada ${operacoesValidas.toString()}:");
+  String entrada = stdin.readLineSync()!;
+  if (operacoesValidas.contains(entrada)) {
+    return entrada;
+  } else {
+    return leOperacao();
   }
-  return "+";
 }
 
 void main() {
-  exercicio4();
   print("Digite o primeiro número:");
   double primeiroValor = leNumero();
-  print("Digite a operação desejada [+, -, * ou /]:");
+
   String operacao = leOperacao();
+
   print("Digite o segundo número:");
   double segundoValor = leNumero();
 
